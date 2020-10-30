@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 
 class FeedController: UICollectionViewController {
@@ -18,11 +18,30 @@ class FeedController: UICollectionViewController {
         configureUI()
     }
     
+    //MARK: - Actions
+    
+    @objc private func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        } catch {
+            print("DEBUG: Failed to sign out")
+        }
+    }
+    
     //MARK: - Helpers
     
     private func configureUI() {
         collectionView.backgroundColor = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout",
+                                                            style: .plain, target: self, action: #selector(handleLogout))
+        
+        navigationItem.title = "Feed"
     }
 }
 

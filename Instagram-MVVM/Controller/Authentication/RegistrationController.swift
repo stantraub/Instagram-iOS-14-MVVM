@@ -12,6 +12,7 @@ class RegistrationController: UIViewController {
     //MARK: - Properties
     
     private var viewModel = RegistrationViewModel()
+    private var profileImage: UIImage?
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -41,16 +42,18 @@ class RegistrationController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
         button.layer.cornerRadius = 5
         button.setHeight(50)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
     private let alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.attributedTitle(firstPart: "Already have an account?", secondPart: "Sign Up")
+        button.attributedTitle(firstPart: "Already have an account?", secondPart: "Log In")
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
         return button
     }()
@@ -65,6 +68,33 @@ class RegistrationController: UIViewController {
     }
     
     //MARK: - Actions
+    
+    @objc private func handleSignUp() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let username = usernameTextField.text?.lowercased() else { return }
+        guard let profileImage = profileImage else { return }
+        
+        let credentials = AuthCredentials(
+            email: email,
+            password: password,
+            fullname: fullname,
+            username: username,
+            profileImage: profileImage
+        )
+    
+        AuthService.registerUser(withCredential: credentials) { error in
+            if let error = error {
+                print("DEBUG: Failed to sign up user with \(error.localizedDescription)")
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
     
     @objc private func handleShowLogin() {
         navigationController?.popViewController(animated: true)
@@ -138,6 +168,7 @@ extension RegistrationController: FormViewModel {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        profileImage = selectedImage
         
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
         plusPhotoButton.layer.masksToBounds = true
