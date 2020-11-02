@@ -125,7 +125,7 @@ class FeedCell: UICollectionViewCell {
     //MARK: - Actions
     
     @objc private func didTapUsername() {
-        print("DEBUG: did tap username")
+        
     }
     
     //MARK: - Helpers
