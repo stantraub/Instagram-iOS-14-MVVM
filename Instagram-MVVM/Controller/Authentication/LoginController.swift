@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginController: UIViewController {
     
@@ -42,7 +44,7 @@ class LoginController: UIViewController {
         button.setHeight(50)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.isEnabled = false
-        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -59,6 +61,8 @@ class LoginController: UIViewController {
         return button
     }()
     
+    let disposeBag = DisposeBag()
+    
     
     //MARK: - Lifecycle
     
@@ -66,6 +70,8 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        configureTextFieldObservers()
+        configureLoginButtonObserver()
     }
     
     //MARK: - Actions
@@ -78,7 +84,7 @@ class LoginController: UIViewController {
                 print("DEBUG: Failed to log user in \(error.localizedDescription)")
                 return
             }
-            
+
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -88,16 +94,56 @@ class LoginController: UIViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    @objc func textDidChange(sender: UITextField) {
-        if sender == emailTextField {
-            viewModel.email = sender.text
-        } else {
-            viewModel.password = sender.text
-        }
+    private func configureTextFieldObservers() {
+        emailTextField.rx.controlEvent(.editingChanged).asObservable()
+            .map { self.emailTextField.text ?? ""}
+            .filter { !$0.isEmpty}
+            .subscribe(onNext: { [weak self] text in
+                print(text)
+                self?.viewModel.email = text
+                self?.updateForm()
+            })
+            .disposed(by: disposeBag)
         
-        updateForm()
-
+        
+        passwordTextField.rx.controlEvent(.editingChanged).asObservable()
+            .map { self.passwordTextField.text ?? "" }
+            .filter { !$0.isEmpty }
+            .subscribe(onNext: {[ weak self] text in
+                print(text)
+                self?.viewModel.password = text
+                self?.updateForm()
+            })
+            .disposed(by: disposeBag)
     }
+    
+    private func configureLoginButtonObserver() {
+        loginButton.rx.controlEvent(.touchUpInside).asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let email = self?.emailTextField.text else { return }
+                guard let password = self?.passwordTextField.text else { return }
+                AuthService.logUserIn(withEmail: email, password: password) { result, error in
+                    if let error = error {
+                        print("DEBUG: Failed to log user in \(error.localizedDescription)")
+                        return
+                    }
+
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+//    @objc func textDidChange(sender: UITextField) {
+//        if sender == emailTextField {
+//            viewModel.email = sender.text
+//        } else {
+//            viewModel.password = sender.text
+//        }
+//
+//        updateForm()
+//
+//    }
     
     //MARK: - Helpers
     
@@ -125,8 +171,8 @@ class LoginController: UIViewController {
     }
     
     private func configureNotificationObservers() {
-        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
 }
 
