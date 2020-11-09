@@ -27,6 +27,9 @@
 		117B4F812550A53900071055 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B4F802550A53900071055 /* UserCellViewModel.swift */; };
 		117B4F8425532C9300071055 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B4F8325532C9300071055 /* UploadPostController.swift */; };
 		117B4F872553306800071055 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B4F862553306800071055 /* InputTextView.swift */; };
+		117EE5662558ADB2001A5106 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EE5652558ADB2001A5106 /* PostService.swift */; };
+		117EE5692558B4FC001A5106 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EE5682558B4FC001A5106 /* Post.swift */; };
+		117EE56C2558B7E0001A5106 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EE56B2558B7E0001A5106 /* PostViewModel.swift */; };
 		118E6462254910D30070DA03 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118E6461254910D30070DA03 /* CustomTextField.swift */; };
 		118E64682549362A0070DA03 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118E64672549362A0070DA03 /* AuthenticationViewModel.swift */; };
 		11994A69254BA9EB002C26A6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11994A68254BA9EB002C26A6 /* GoogleService-Info.plist */; };
@@ -64,6 +67,9 @@
 		117B4F802550A53900071055 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		117B4F8325532C9300071055 /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		117B4F862553306800071055 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		117EE5652558ADB2001A5106 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		117EE5682558B4FC001A5106 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		117EE56B2558B7E0001A5106 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		118E6461254910D30070DA03 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		118E64672549362A0070DA03 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		11994A68254BA9EB002C26A6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				11C23D79254CFED000F90700 /* User.swift */,
+				117EE5682558B4FC001A5106 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +187,7 @@
 				118E64672549362A0070DA03 /* AuthenticationViewModel.swift */,
 				11C23D7C254D02BE00F90700 /* ProfileHeaderViewModel.swift */,
 				117B4F802550A53900071055 /* UserCellViewModel.swift */,
+				117EE56B2558B7E0001A5106 /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 				11994A8F254BAD32002C26A6 /* ImageUploader.swift */,
 				11994A92254BAD3A002C26A6 /* AuthService.swift */,
 				11C23D73254CFD3600F90700 /* UserService.swift */,
+				117EE5652558ADB2001A5106 /* PostService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -345,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117EE56C2558B7E0001A5106 /* PostViewModel.swift in Sources */,
 				118E6462254910D30070DA03 /* CustomTextField.swift in Sources */,
 				11994A99254BBDEF002C26A6 /* ProfileHeader.swift in Sources */,
 				117B4F8425532C9300071055 /* UploadPostController.swift in Sources */,
@@ -367,7 +377,9 @@
 				116F62262543AA5B008F487B /* MainTabController.swift in Sources */,
 				116F62332543AB86008F487B /* NotificationsController.swift in Sources */,
 				11994A90254BAD32002C26A6 /* ImageUploader.swift in Sources */,
+				117EE5692558B4FC001A5106 /* Post.swift in Sources */,
 				11994A93254BAD3A002C26A6 /* AuthService.swift in Sources */,
+				117EE5662558ADB2001A5106 /* PostService.swift in Sources */,
 				11C23D74254CFD3600F90700 /* UserService.swift in Sources */,
 				11994A96254BBDE6002C26A6 /* ProfileCell.swift in Sources */,
 				116F620C2543A98A008F487B /* SceneDelegate.swift in Sources */,
