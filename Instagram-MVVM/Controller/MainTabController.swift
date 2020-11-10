@@ -13,7 +13,7 @@ class MainTabController: UITabBarController {
     
     //MARK: - Properties
     
-    private var user: User? {
+    var user: User? {
         didSet {
             guard let user = user else { return }
             configureViewControllers(withUser: user)
@@ -32,7 +32,8 @@ class MainTabController: UITabBarController {
     //MARK: - API
     
     private func fetchUser() {
-        UserService.fetchUser { [weak self] user in
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        UserService.fetchUser(withUid: uid) { [weak self] user in
             self?.user = user
         }
     }
@@ -147,7 +148,9 @@ extension MainTabController: UploadPostControllerDelegate {
     func controllerDidFinishUploadPost(_ controller: UploadPostController) {
         selectedIndex = 0
         controller.dismiss(animated: true, completion: nil)
+        
+        guard let feedNav = viewControllers?.first as? UINavigationController else { return }
+        guard let feed = feedNav.viewControllers.first as? FeedController else { return }
+        feed.handleRefresh()
     }
-    
-    
 }

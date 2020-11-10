@@ -14,6 +14,7 @@ class FeedController: UICollectionViewController {
     //MARK: - Lifecycle
     
     private var posts = [Post]()
+    var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class FeedController: UICollectionViewController {
     
     //MARK: - Actions
     
-    @objc private func handleRefresh() {
+    @objc func handleRefresh() {
         posts.removeAll()
         fetchPosts()
     }
@@ -44,6 +45,8 @@ class FeedController: UICollectionViewController {
     //MARK: - API
     
     private func fetchPosts() {
+        guard post == nil else { return }
+
         PostService.fetchPosts { [weak self] posts in
             DispatchQueue.main.async {
                 self?.posts = posts
@@ -59,9 +62,15 @@ class FeedController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout",
-                                                            style: .plain, target: self, action: #selector(handleLogout))
-        
+        if post == nil {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: "Logout",
+                style: .plain,
+                target: self,
+                action: #selector(handleLogout)
+            )
+        }
+    
         navigationItem.title = "Feed"
         
         let refresher = UIRefreshControl()
@@ -79,7 +88,14 @@ extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as! FeedCell
-        cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        cell.delegate = self
+        
+        if let post = post {
+            cell.viewModel = PostViewModel(post: post)
+        } else {
+            cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        }
+        
         return cell
     }
 }
@@ -96,5 +112,16 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: height)
     }
+}
+
+//MARK: - FeedCellDelegate
+
+extension FeedController: FeedCellDelegate {
+    func cell(_ cell: FeedCell, wantsToShowCommentsFor post: Post) {
+        let controller = CommentController(post: post)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
 }
 
