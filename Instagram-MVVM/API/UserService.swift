@@ -62,10 +62,7 @@ struct UserService {
                     let posts = snapshot?.documents.count ?? 0
                     completion(UserStats(followers: followers, following: following, posts: posts))
                 }
-                
-                
             }
-            
         }
     }
 }
