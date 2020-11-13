@@ -33,6 +33,8 @@ class ProfileController: UICollectionViewController {
         checkIfUserIsFollowed()
         fetchUserStats()
         fetchPosts()
+        
+//        PostService.updateUserFeedAfterFollowingUser(user: user, didFollow: true)
     }
     
     //MARK: - API
@@ -145,6 +147,9 @@ extension ProfileController: ProfileHeaderDelegate {
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
+                
+                PostService.updateUserFeedAfterFollowingUser(user: user, didFollow: false)
+
             }
         } else {
             UserService.follow(uid: user.uid) { [weak self] error in
@@ -156,6 +161,9 @@ extension ProfileController: ProfileHeaderDelegate {
                 NotificationService.uploadNotification(toUid: user.uid,
                                                        fromUser: currentUser,
                                                        type: .follow)
+                
+                PostService.updateUserFeedAfterFollowingUser(user: user, didFollow: true)
+
             }
         }
     }

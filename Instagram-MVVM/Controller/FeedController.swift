@@ -53,7 +53,7 @@ class FeedController: UICollectionViewController {
     private func fetchPosts() {
         guard post == nil else { return }
 
-        PostService.fetchPosts { [weak self] posts in
+        PostService.fetchFeedPosts { [weak self] posts in
             DispatchQueue.main.async {
                 self?.posts = posts
                 self?.collectionView.refreshControl?.endRefreshing()
