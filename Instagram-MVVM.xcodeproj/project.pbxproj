@@ -49,6 +49,8 @@
 		11C23D7D254D02BE00F90700 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C23D7C254D02BE00F90700 /* ProfileHeaderViewModel.swift */; };
 		11DCA0C3255DB45600A1D9DF /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0C2255DB45600A1D9DF /* NotificationCell.swift */; };
 		11DCA0C7255DB99700A1D9DF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0C6255DB99700A1D9DF /* Notification.swift */; };
+		11DCA0CA255DC44500A1D9DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0C9255DC44500A1D9DF /* NotificationService.swift */; };
+		11DCA0CD255E2AD700A1D9DF /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0CC255E2AD700A1D9DF /* NotificationViewModel.swift */; };
 		4130145534A763E3A890854F /* Pods_Instagram_MVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D73EFBCE6A62A724CC46B0 /* Pods_Instagram_MVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		11C23D7C254D02BE00F90700 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		11DCA0C2255DB45600A1D9DF /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		11DCA0C6255DB99700A1D9DF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		11DCA0C9255DC44500A1D9DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		11DCA0CC255E2AD700A1D9DF /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		81D73EFBCE6A62A724CC46B0 /* Pods_Instagram_MVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_MVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BA7882F3585CB04A63CF05 /* Pods-Instagram-MVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-MVVM.release.xcconfig"; path = "Target Support Files/Pods-Instagram-MVVM/Pods-Instagram-MVVM.release.xcconfig"; sourceTree = "<group>"; };
 		F640FCD4E3AC3B9F02A138E7 /* Pods-Instagram-MVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-MVVM.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-MVVM/Pods-Instagram-MVVM.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				117B4F802550A53900071055 /* UserCellViewModel.swift */,
 				117EE56B2558B7E0001A5106 /* PostViewModel.swift */,
 				1153886C255A1B170012CA43 /* CommentViewModel.swift */,
+				11DCA0CC255E2AD700A1D9DF /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				11C23D73254CFD3600F90700 /* UserService.swift */,
 				117EE5652558ADB2001A5106 /* PostService.swift */,
 				11538866255A15280012CA43 /* CommentService.swift */,
+				11DCA0C9255DC44500A1D9DF /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1153886D255A1B170012CA43 /* CommentViewModel.swift in Sources */,
+				11DCA0CD255E2AD700A1D9DF /* NotificationViewModel.swift in Sources */,
 				117EE56C2558B7E0001A5106 /* PostViewModel.swift in Sources */,
 				118E6462254910D30070DA03 /* CustomTextField.swift in Sources */,
 				11994A99254BBDEF002C26A6 /* ProfileHeader.swift in Sources */,
@@ -406,6 +413,7 @@
 				116F62362543AB8F008F487B /* ProfileController.swift in Sources */,
 				117B4F812550A53900071055 /* UserCellViewModel.swift in Sources */,
 				116F62262543AA5B008F487B /* MainTabController.swift in Sources */,
+				11DCA0CA255DC44500A1D9DF /* NotificationService.swift in Sources */,
 				116F62332543AB86008F487B /* NotificationsController.swift in Sources */,
 				11994A90254BAD32002C26A6 /* ImageUploader.swift in Sources */,
 				117EE5692558B4FC001A5106 /* Post.swift in Sources */,
