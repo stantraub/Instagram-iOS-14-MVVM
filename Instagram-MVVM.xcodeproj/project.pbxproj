@@ -51,6 +51,7 @@
 		11DCA0C7255DB99700A1D9DF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0C6255DB99700A1D9DF /* Notification.swift */; };
 		11DCA0CA255DC44500A1D9DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0C9255DC44500A1D9DF /* NotificationService.swift */; };
 		11DCA0CD255E2AD700A1D9DF /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCA0CC255E2AD700A1D9DF /* NotificationViewModel.swift */; };
+		11DD976C255F45E100AA463A /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD976B255F45E100AA463A /* ResetPasswordController.swift */; };
 		4130145534A763E3A890854F /* Pods_Instagram_MVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D73EFBCE6A62A724CC46B0 /* Pods_Instagram_MVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		11DCA0C6255DB99700A1D9DF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		11DCA0C9255DC44500A1D9DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		11DCA0CC255E2AD700A1D9DF /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		11DD976B255F45E100AA463A /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		81D73EFBCE6A62A724CC46B0 /* Pods_Instagram_MVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_MVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BA7882F3585CB04A63CF05 /* Pods-Instagram-MVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-MVVM.release.xcconfig"; path = "Target Support Files/Pods-Instagram-MVVM/Pods-Instagram-MVVM.release.xcconfig"; sourceTree = "<group>"; };
 		F640FCD4E3AC3B9F02A138E7 /* Pods-Instagram-MVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-MVVM.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-MVVM/Pods-Instagram-MVVM.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				110D815F2546918A00ABF35B /* LoginController.swift */,
 				110D81642546919700ABF35B /* RegistrationController.swift */,
+				11DD976B255F45E100AA463A /* ResetPasswordController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				116F622A2543AB6A008F487B /* FeedController.swift in Sources */,
 				115388642559EA540012CA43 /* CommentInputAccessoryView.swift in Sources */,
 				11C23D7D254D02BE00F90700 /* ProfileHeaderViewModel.swift in Sources */,
+				11DD976C255F45E100AA463A /* ResetPasswordController.swift in Sources */,
 				117B4F872553306800071055 /* InputTextView.swift in Sources */,
 				11C23D77254CFD6500F90700 /* Constants.swift in Sources */,
 				116F62362543AB8F008F487B /* ProfileController.swift in Sources */,
