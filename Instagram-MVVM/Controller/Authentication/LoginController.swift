@@ -18,7 +18,6 @@ class LoginController: UIViewController {
     //MARK: - Properties
     
     private var viewModel = LoginViewModel()
-    
     weak var delegate: AuthenticationDelegate?
     
     private let iconImage: UIImageView = {
@@ -155,6 +154,8 @@ class LoginController: UIViewController {
     
     @objc private func handleShowResetPassword() {
         let controller = ResetPasswordController()
+        controller.delegate = self
+        controller.email = emailTextField.text
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -197,6 +198,14 @@ extension LoginController: FormViewModel {
         loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
         loginButton.isEnabled = viewModel.formIsValid
     }
-    
-    
+}
+
+//MARK: - ResetPasswordControllerDelegate
+
+extension LoginController: ResetPasswordControllerDelegate {
+    func controllerDidSendResetPasswordLink(_ controller: ResetPasswordController) {
+        navigationController?.popViewController(animated: true)
+        showMessage(withTitle: "Success",
+                    message: "We sent a link to your email to reset your password")
+    }
 }

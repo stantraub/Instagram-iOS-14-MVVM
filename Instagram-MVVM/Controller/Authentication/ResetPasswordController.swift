@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol ResetPasswordControllerDelegate: class {
+    func controllerDidSendResetPasswordLink(_ controller: ResetPasswordController)
+}
+
 class ResetPasswordController: UIViewController {
     
     //MARK: - Properties
     
-    private let viewModel = ResetPasswordViewModel()
+    private var viewModel = ResetPasswordViewModel()
+    weak var delegate: ResetPasswordControllerDelegate?
+    var email: String?
     
     private let emailTextField = CustomTextField(placeholder: "Email")
     
@@ -52,17 +58,39 @@ class ResetPasswordController: UIViewController {
     //MARK: - Actions
     
     @objc private func handleResetPassword() {
-        
+        guard let email = emailTextField.text else { return }
+        showLoader(true)
+        AuthService.resetPassword(withEmail: email) { error in
+            if let error = error {
+                self.showMessage(withTitle: "Error", message: error.localizedDescription)
+                self.showLoader(false)
+                return
+            }
+            
+            self.delegate?.controllerDidSendResetPasswordLink(self)
+        }
     }
     
     @objc private func handleDismissal() {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        }
+    }
+    
     //MARK: - Helpers
     
     private func configureUI() {
         configureGradientLayer()
+        
+        emailTextField.text = email
+        viewModel.email = email
+        updateForm()
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         view.addSubview(backButton)
         backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                           paddingTop: 16, paddingLeft: 16)
@@ -82,4 +110,12 @@ class ResetPasswordController: UIViewController {
     }
     
 
+}
+
+extension ResetPasswordController: FormViewModel {
+    func updateForm() {
+        resetPasswordButton.backgroundColor = viewModel.buttonBackgroundColor
+        resetPasswordButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+        resetPasswordButton.isEnabled = viewModel.formIsValid
+    }
 }
